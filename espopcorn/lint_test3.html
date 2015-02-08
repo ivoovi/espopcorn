@@ -1,0 +1,24 @@
+<!doctype html>
+
+<title>CodeMirror: Linter Demo</title>
+<meta charset="utf-8"/>
+
+
+<link rel="stylesheet" href="lib/codemirror.css">
+<script src="lib/codemirror.js"></script>
+<script src="mode/lua/lua.js"></script>
+
+<textarea id="code-json">
+  var LUA = "test";
+</textarea>
+<script>
+
+// TODO:  Please make us help a LUA lint..
+  var editor_json = CodeMirror.fromTextArea(document.getElementById("code-json"), {
+    lineNumbers: true,
+    mode: "lua",
+    gutters: ["CodeMirror-lint-markers"],
+    lint: false
+  });
+  
+</script>
