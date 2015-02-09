@@ -48,7 +48,6 @@ var SerialConnection = function() {
 SerialConnection.prototype.onConnectComplete = function(connectionInfo) {
   if (!connectionInfo) {
     console.log("Connection failed.");
-    //connection.send("test");
     return;
   }
   this.connectionId = connectionInfo.connectionId;
@@ -62,11 +61,10 @@ SerialConnection.prototype.onConnectComplete = function(connectionInfo) {
 SerialConnection.prototype.onReceive = function(receiveInfo) {
   console.log("receive id " + this.connectionId);
   console.log("selected_id " + selected_id);
-  //console.log(receiveInfo.data);
+  console.log(receiveInfo.data);
   if (selected_id !== this.connectionId) {
     return;
   }
-
   this.lineBuffer += ab2str(receiveInfo.data);
 
   var index;
@@ -260,37 +258,3 @@ $("#upload").on("click", function() {
     
     
 });
-
-
-
-
-
-
-// Handle the 'Connect' button
-/*document.querySelector('#connect_button').addEventListener('click', function() {
-  // get the device to connect to
-  var dropDown = document.querySelector('#port_list');
-  var devicePath = dropDown.options[dropDown.selectedIndex].value;
-  // connect
-  log("Connecting to "+devicePath);
-  connection.connect(devicePath);
-});*/
-
-////////////////////////////////////////////////////////
-/*
-// Toggle LED state
-var is_on = false;
-document.querySelector('#toggle').addEventListener('click', function() {
-  is_on = !is_on;
-  connection.send("digitalWrite(LED1, "+(is_on ? '1' : '0')+");\n");
-});
-
-// Flash 3 times
-document.querySelector('#flash').addEventListener('click', function() {
-  connection.send("l=0; var interval = setInterval(function() { digitalWrite(LED2, l&1); if (++l>6) clearInterval(interval); }, 200);\n");
-});
-
-// Get temperature
-document.querySelector('#get_temperature').addEventListener('click', function() {
-  connection.send("console.log('TEMPERATURE='+E.getTemperature().toFixed(1));\n");
-});*/
